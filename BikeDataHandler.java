@@ -57,13 +57,14 @@ public class BikeDataHandler
             String model = jo.getString("frame_model",unknown);
             String descrip = jo.getString("description",unknown);
             String image = jo.getString("large_img", unknown);
+            String colors = jo.getJsonArray("frame_colors").toString();
             long time=0;
             try {
                 time = jo.getJsonNumber("date_stolen").longValue();
             } catch (Exception e) {
                 time = 0;
             }
-            Bike theft = new Bike(id,make,model,descrip,image);
+            Bike theft = new Bike(id,make,model,colors,descrip,image);
             theft.setTime(time);
             bikes[i]=theft;
         }
@@ -92,12 +93,13 @@ public class BikeDataHandler
         }
     }
     public void bikeToObject(){
-        columNames = new Object[4];
+        columNames = new Object[5];
         columNames[0]="id";
         columNames[1]="Make";
         columNames[2]="Model";
-        columNames[3]="Description";
-        dataArray = new Object[bikes.length][4];
+        columNames[3]="Colors";
+        columNames[4]="Description";
+        dataArray = new Object[bikes.length][5];
         for(int i=0;i<bikes.length;i++){
             dataArray[i]=bikes[i].toArr();
         }

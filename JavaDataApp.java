@@ -13,11 +13,10 @@ public class JavaDataApp
 {
     String city = "Shepherdstown";
     String distance = "100";
+    String colors="n/a";
     static String searchTitle;
-    Button loadButton;
-    Button viewButton;
-    JTextField cityField;
-    JTextField distanceField;
+    Button loadButton, viewButton;
+    JTextField cityField, distanceField, colorField;
     DataView dataView;
     BikeDataHandler bikeData;
     JFrame frame;
@@ -26,8 +25,9 @@ public class JavaDataApp
         String url;
         int distance = 100;
         String city = "Shepherdstown";
+        String colors = "n/a";
         //"https://bikeindex.org:443/api/v3/search?page=1&per_page=10&location=Shepherdstown%2C%20WV&distance=100&stolenness=proximity"
-        url="https://bikeindex.org:443/api/v3/search?page=1&per_page=100&location="+city+"%2C%20WV&distance="+distance+"&stolenness=proximity";
+        url="https://bikeindex.org:443/api/v3/search?page=1&per_page=100&colors="+colors+"&location="+city+"%2C%20WV&distance="+distance+"&stolenness=proximity";
         searchTitle = "Bikes lost within "+ distance +"miles of "+city ;
         JavaDataApp jda=new JavaDataApp(url);
     }
@@ -61,10 +61,16 @@ public class JavaDataApp
         distanceField = new JTextField(4);
         distin.add(new Label("Distance in miles 0-9999"));
         distin.add(distanceField);
+        JPanel colorin = new JPanel();
+        colorField = new JTextField(10);
+        colorin.add(new Label("Color of bike"));
+        colorin.add(colorField);
         imputs.add(cityin);
         imputs.add(distin);
+        imputs.add(colorin);
         cityField.addActionListener(listener);
         distanceField.addActionListener(listener);
+        colorField.addActionListener(listener);
         frame.add(buttons);
         frame.add(imputs);
         frame.pack();
@@ -92,12 +98,16 @@ public class JavaDataApp
         }else if(txf==distanceField){
             distance=distanceField.getText();
             distanceField.setText("");
+        }else if(txf==colorField){
+            colors=colorField.getText();
+            colorField.setText("");
         }
     }
     public void calcURL(){
-        url="https://bikeindex.org:443/api/v3/search?page=1&per_page=100&location="+city+"%2C%20WV&distance="+distance+"&stolenness=proximity";
+        url="https://bikeindex.org:443/api/v3/search?page=1&per_page=100&colors="+colors+"&location="+city+"%2C%20WV&distance="+distance+"&stolenness=proximity";
     }
     public void calcTitle(){
          frame.setTitle("Bikes lost within "+ distance +"miles of "+city) ;
     }
+    
 }

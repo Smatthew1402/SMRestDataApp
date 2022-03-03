@@ -8,12 +8,13 @@ public class Bike {
     String description, colors, make, model, ImageUrl;
     int id;
     long date_stolen;
-    public Bike(int id, String make, String model, String descrip, String imgurl)    {
+    public Bike(int id, String make, String model,String Colors, String descrip, String imgurl)    {
         this.id=id;
         this.make=make;
         this.model=model;
         this.description=descrip;
         this.ImageUrl=imgurl;
+        colors =Colors;
         date_stolen=-1;
     }
     public String getTime () {
@@ -32,11 +33,12 @@ public class Bike {
         return showall;
     }
     public Object[] toArr(){
-        Object[] out = new Object[4];
+        Object[] out = new Object[5];
         out[0]=id;
         out[1]=make;
         out[2]=model;
-        out[3]=description;
+        out[4]=description;
+        out[3]=colors;
         return out;
     }
     public String getImageURL(){
