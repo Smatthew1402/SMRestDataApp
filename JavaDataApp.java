@@ -25,6 +25,7 @@ public class JavaDataApp
     
     public static void main(){
         String url;
+        //"https://bikeindex.org:443/api/v3/search?page=1&per_page=10&location=Shepherdstown%2C%20WV&distance=100&stolenness=proximity"
         url="https://bikeindex.org:443/api/v3/search?page=1&per_page=10&location="+CITY+"%2C%20WV&distance="+DISTANCE+"&stolenness=proximity";
         searchTitle = "Bikes lost within "+ DISTANCE +"miles of "+CITY ;
         JavaDataApp jda=new JavaDataApp(url);
@@ -74,7 +75,8 @@ public class JavaDataApp
         if(src==viewButton){
             //Bring up the photo for the selected bike
         }else if(src==loadButton){
-            //reload the data with the imput from the text boxes
+            //bring up data from the default or other information
+            
         }else if(src==sortButton){
             //reload the data sorted by the selected column.
         }

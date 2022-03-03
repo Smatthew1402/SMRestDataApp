@@ -92,5 +92,15 @@ public class BikeDataHandler
             System.err.println(e);
         }
     }
-    
+    public void bikeToObject(){
+        columNames = new Object[4];
+        columNames[0]="id";
+        columNames[1]="Make";
+        columNames[2]="Model";
+        columNames[3]="Description";
+        dataArray = new Object[bikes.length][4];
+        for(int i=0;i<bikes.length;i++){
+            dataArray[i]=bikes[i].toArr();
+        }
+    }
 }
