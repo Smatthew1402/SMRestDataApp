@@ -1,4 +1,8 @@
 import java.util.*;
+import java.io.*;
+import javax.json.*;
+import java.net.*;
+
 /**
  * Will get the data from a given URL and arrange it for the program to display
  *
@@ -14,7 +18,9 @@ public class BikeDataHandler
     Object [] columNames;
     int rows, cols;
     String url;
-    public BikeDataHandler(){
+    Bike[] bikes;
+    public BikeDataHandler(String inurl){
+        url=inurl;
         rows=0;
         cols=0;
         dataArray=new Object[0][0];
@@ -26,4 +32,65 @@ public class BikeDataHandler
     public Object[] getColumnNames(){
         return columNames;
     }
+    public void URLtoObject(){
+        InputStream is = openURL(url);
+        JsonReader jsonReader = Json.createReader(is);
+        JsonStructure js = jsonReader.read();
+        jsonReader.close();
+        closeStream(is);
+        
+        JsonArray jsa =null;
+        JsonObject jso=null;
+        if(js instanceof JsonObject){
+            jso=(JsonObject)js;
+            jsa=jso.getJsonArray("bikes");
+        }else{
+            jsa=(JsonArray)js;
+        }
+        int s = jsa.size();
+        bikes = new Bike[s];
+        for(int i=0; i<s; i++){
+            JsonObject jo = jsa.getJsonObject(i);
+            int id = jo.getInt("id");
+            String unknown = "??";
+            String make = jo.getString("manufacturer_name",unknown);
+            String model = jo.getString("frame_model",unknown);
+            String descrip = jo.getString("description",unknown);
+            String image = jo.getString("large_img", unknown);
+            long time=0;
+            try {
+                time = jo.getJsonNumber("date_stolen").longValue();
+            } catch (Exception e) {
+                time = 0;
+            }
+            Bike theft = new Bike(id,make,model,descrip,image);
+            theft.setTime(time);
+            bikes[i]=theft;
+        }
+        for (int i=0; i<bikes.length; i++) {
+            Bike theft = bikes[i];
+            System.out.println(i + ") "+ theft);
+        }
+    }
+    private static InputStream openURL(String http){
+        URL url;
+        InputStream source = null;
+        try{
+            url = new URL(http);
+            source=url.openStream();
+        }catch(Exception e){
+            System.err.println("Cannot open URL "+http);
+            System.err.println(e);
+        }
+        return source;
+    }
+    private static void closeStream (InputStream is) {
+        try {
+            is.close();
+        } catch (Exception e) {
+            System.err.println("Could not close the input stream.");
+            System.err.println(e);
+        }
+    }
+    
 }

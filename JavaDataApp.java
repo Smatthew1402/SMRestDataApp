@@ -31,7 +31,7 @@ public class JavaDataApp
     }
     public JavaDataApp(String inurl){
         url = inurl;
-        bikeData = new BikeDataHandler();
+        bikeData = new BikeDataHandler(url);
         dataView = new DataView(bikeData);
         Dimension tableSize = new Dimension(600,400);//Initial Dimension
         dataView.setPreferredSize(tableSize);
