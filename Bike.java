@@ -42,4 +42,11 @@ public class Bike {
     public String getImageURL(){
         return ImageUrl;
     }
+    public boolean hasImage(){
+        if(ImageUrl==null){
+            return false;
+        }else{
+            return true;
+        }
+    }
 }

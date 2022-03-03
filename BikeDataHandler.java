@@ -25,16 +25,13 @@ public class BikeDataHandler
         dataArray=new Object[0][0];
         columNames=new Object[0];
     }
-    public void sort(int column){
-        RowCompare rc = new RowCompare(column);
-        Arrays.sort(dataArray, rc);
-    }
     public Object[][] getAllData(){
         return dataArray;
     }
     public Object[] getColumnNames(){
         return columNames;
     }
+    
     public void URLtoBikes(){
         InputStream is = openURL(url);
         JsonReader jsonReader = Json.createReader(is);
@@ -109,5 +106,23 @@ public class BikeDataHandler
         url = http;
         URLtoBikes();
         bikeToObject();
+    }
+    private Bike findBike(int id){
+        for(Bike b:bikes){
+            if(b.id==id){
+                return b;
+            }
+        }
+        return null;
+    }
+    public void viewBike(DataView dv){
+        int bikeID = dv.getSelectedID();
+        Bike viewbike = findBike(bikeID);
+        
+        try{
+            ReadImage.displayImage(viewbike.getImageURL());
+        }catch(NullPointerException npe){
+            System.out.println("No Image");
+        }
     }
 }

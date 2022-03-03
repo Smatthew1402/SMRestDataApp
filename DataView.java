@@ -23,4 +23,16 @@ public class DataView extends JScrollPane{
         }
         setViewportView(table);
     }
+    public int getSelectedRow(){
+        return table.getSelectedRow();
+    }
+    public int getSelectedID(){
+        Object val = table.getValueAt(table.getSelectedRow(), 0);
+        try{
+            return (int)val;
+        }catch(ClassCastException e){
+            System.out.println(e);
+        }
+        return -1;
+    }
 }

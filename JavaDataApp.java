@@ -15,7 +15,6 @@ public class JavaDataApp
     String distance = "100";
     static String searchTitle;
     Button loadButton;
-    Button sortButton;
     Button viewButton;
     JTextField cityField;
     JTextField distanceField;
@@ -23,7 +22,6 @@ public class JavaDataApp
     BikeDataHandler bikeData;
     JFrame frame;
     String url;
-    
     public static void main(){
         String url;
         int distance = 100;
@@ -48,13 +46,10 @@ public class JavaDataApp
         JPanel buttons = new JPanel();//Panel for buttons
         buttons.setLayout(new BoxLayout(buttons, BoxLayout.PAGE_AXIS));
         viewButton = new Button ("VIEW");
-        sortButton = new Button ("SORT");
         loadButton = new Button ("LOAD");
         viewButton.addActionListener(listener);
-        sortButton.addActionListener(listener);
         loadButton.addActionListener(listener);
         buttons.add(viewButton);
-        buttons.add(sortButton);
         buttons.add(loadButton);
         JPanel imputs = new JPanel();//imputs panel for city and distance
         imputs.setLayout(new BoxLayout(imputs, BoxLayout.PAGE_AXIS));
@@ -82,14 +77,12 @@ public class JavaDataApp
     
     public void handleButtonPress(Object src){
         if(src==viewButton){
-            //Bring up the photo for the selected bike
+            bikeData.viewBike(dataView);
         }else if(src==loadButton){
             calcURL();
             calcTitle();
             bikeData.loadURL(url);
             dataView.setBikeData(bikeData);
-        }else if(src==sortButton){
-            //reload the data sorted by the selected column.
         }
     }
     public void handleTextEnter(Object txf){
