@@ -10,8 +10,8 @@ import javax.swing.JTextField;
  */
 public class JavaDataApp
 {
-    static final String CITY = "Shepherdstown";
-    static final String DISTANCE = "100";
+    String city = "Shepherdstown";
+    String distance = "100";
     static String searchTitle;
     Button loadButton;
     Button sortButton;
@@ -25,9 +25,11 @@ public class JavaDataApp
     
     public static void main(){
         String url;
+        int distance = 100;
+        String city = "Shepherdstown";
         //"https://bikeindex.org:443/api/v3/search?page=1&per_page=10&location=Shepherdstown%2C%20WV&distance=100&stolenness=proximity"
-        url="https://bikeindex.org:443/api/v3/search?page=1&per_page=10&location="+CITY+"%2C%20WV&distance="+DISTANCE+"&stolenness=proximity";
-        searchTitle = "Bikes lost within "+ DISTANCE +"miles of "+CITY ;
+        url="https://bikeindex.org:443/api/v3/search?page=1&per_page=10&location="+city+"%2C%20WV&distance="+distance+"&stolenness=proximity";
+        searchTitle = "Bikes lost within "+ distance +"miles of "+city ;
         JavaDataApp jda=new JavaDataApp(url);
     }
     public JavaDataApp(String inurl){
@@ -75,10 +77,27 @@ public class JavaDataApp
         if(src==viewButton){
             //Bring up the photo for the selected bike
         }else if(src==loadButton){
-            //bring up data from the default or other information
-            
+            calcURL();
+            calcTitle();
+            bikeData.loadURL(url);
+            dataView.setBikeData(bikeData);
         }else if(src==sortButton){
             //reload the data sorted by the selected column.
         }
+    }
+    public void handleTextEnter(Object txf){
+        if(txf==cityField){
+            //System.out.println("City :"+cityField.getText());
+            city=cityField.getText();
+        }else if(txf==distanceField){
+            //System.out.println("Distance :"+distanceField.getText());
+            distance=distanceField.getText();
+        }
+    }
+    public void calcURL(){
+        url="https://bikeindex.org:443/api/v3/search?page=1&per_page=10&location="+city+"%2C%20WV&distance="+distance+"&stolenness=proximity";
+    }
+    public void calcTitle(){
+         frame.setTitle("Bikes lost within "+ distance +"miles of "+city) ;
     }
 }

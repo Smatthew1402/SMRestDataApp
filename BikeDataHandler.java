@@ -32,7 +32,7 @@ public class BikeDataHandler
     public Object[] getColumnNames(){
         return columNames;
     }
-    public void URLtoObject(){
+    public void URLtoBikes(){
         InputStream is = openURL(url);
         JsonReader jsonReader = Json.createReader(is);
         JsonStructure js = jsonReader.read();
@@ -102,5 +102,10 @@ public class BikeDataHandler
         for(int i=0;i<bikes.length;i++){
             dataArray[i]=bikes[i].toArr();
         }
+    }
+    public void loadURL(String http){
+        url = http;
+        URLtoBikes();
+        bikeToObject();
     }
 }

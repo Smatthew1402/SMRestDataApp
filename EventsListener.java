@@ -1,5 +1,7 @@
 import java.awt.event.*;
 import java.awt.*;
+import javax.swing.*;
+
 /**
  * The Listener responds to user actions.
  */
@@ -28,6 +30,11 @@ public class EventsListener extends MouseAdapter implements ActionListener{
      */
     public void actionPerformed (ActionEvent e) {
         Object src = e.getSource();
-        master.handleButtonPress (src);
+        if(src instanceof Button){
+            master.handleButtonPress (src);
+        }else if(src instanceof JTextField){
+            master.handleTextEnter(src);
+        }
+        
     }
 }
