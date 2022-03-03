@@ -14,6 +14,7 @@ public class DataView extends JScrollPane{
         this.table = new JTable();
         this.bdh =bdh;
         setBikeData(bdh);
+        table.setAutoCreateRowSorter(true);
     }
     public void setBikeData(BikeDataHandler bdh){
         if(bdh != null){

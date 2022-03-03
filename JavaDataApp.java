@@ -1,6 +1,7 @@
 import javax.swing.JFrame;
 import java.awt.*;
 import javax.swing.JTextField;
+import javax.swing.*;
 
 /**
  * Will manage the display of data.
@@ -44,8 +45,8 @@ public class JavaDataApp
         EventsListener listener = new EventsListener(this);
         dataView.addMouseListener(listener);
         frame.add(dataView);
-        Panel buttons = new Panel();
-        buttons.setLayout(new FlowLayout());
+        JPanel buttons = new JPanel();//Panel for buttons
+        buttons.setLayout(new BoxLayout(buttons, BoxLayout.PAGE_AXIS));
         viewButton = new Button ("VIEW");
         sortButton = new Button ("SORT");
         loadButton = new Button ("LOAD");
@@ -55,14 +56,20 @@ public class JavaDataApp
         buttons.add(viewButton);
         buttons.add(sortButton);
         buttons.add(loadButton);
-        Panel imputs = new Panel();//imputs panel for city and distance
-        imputs.setLayout(new FlowLayout());
+        JPanel imputs = new JPanel();//imputs panel for city and distance
+        imputs.setLayout(new BoxLayout(imputs, BoxLayout.PAGE_AXIS));
+        JPanel cityin = new JPanel();
+        cityin.add(new Label("City"));
         cityField = new JTextField(15);
+        cityin.add(cityField);
+        JPanel distin = new JPanel();
         distanceField = new JTextField(4);
+        distin.add(new Label("Distance in miles 0-9999"));
+        distin.add(distanceField);
+        imputs.add(cityin);
+        imputs.add(distin);
         cityField.addActionListener(listener);
         distanceField.addActionListener(listener);
-        imputs.add(cityField);
-        imputs.add(distanceField);
         frame.add(buttons);
         frame.add(imputs);
         frame.pack();

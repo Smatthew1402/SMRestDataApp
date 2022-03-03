@@ -72,7 +72,6 @@ public class BikeDataHandler
         }
         for (int i=0; i<bikes.length; i++) {
             Bike theft = bikes[i];
-            System.out.println(i + ") "+ theft);
         }
     }
     private static InputStream openURL(String http){
