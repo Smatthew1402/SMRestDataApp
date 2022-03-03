@@ -87,11 +87,11 @@ public class JavaDataApp
     }
     public void handleTextEnter(Object txf){
         if(txf==cityField){
-            //System.out.println("City :"+cityField.getText());
             city=cityField.getText();
+            cityField.setText("");
         }else if(txf==distanceField){
-            //System.out.println("Distance :"+distanceField.getText());
             distance=distanceField.getText();
+            distanceField.setText("");
         }
     }
     public void calcURL(){

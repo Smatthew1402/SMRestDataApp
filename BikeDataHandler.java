@@ -11,8 +11,7 @@ import java.net.*;
  */
 public class BikeDataHandler
 {
-    /*  Need to incorporate the Bike REST information processing into this
-     */
+    
     
     Object [][] dataArray;
     Object [] columNames;
@@ -25,6 +24,10 @@ public class BikeDataHandler
         cols=0;
         dataArray=new Object[0][0];
         columNames=new Object[0];
+    }
+    public void sort(int column){
+        RowCompare rc = new RowCompare(column);
+        Arrays.sort(dataArray, rc);
     }
     public Object[][] getAllData(){
         return dataArray;
