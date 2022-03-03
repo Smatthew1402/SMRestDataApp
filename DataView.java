@@ -13,12 +13,13 @@ public class DataView extends JScrollPane{
     public DataView(BikeDataHandler bdh){
         this.table = new JTable();
         this.bdh =bdh;
-        setBikeData(bdh);
         table.setAutoCreateRowSorter(true);
+        setBikeData(bdh);
     }
     public void setBikeData(BikeDataHandler bdh){
         if(bdh != null){
             table = new JTable (bdh.getAllData(), bdh.getColumnNames());
+        table.setAutoCreateRowSorter(true);
         }
         setViewportView(table);
     }

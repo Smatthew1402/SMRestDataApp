@@ -29,7 +29,7 @@ public class JavaDataApp
         int distance = 100;
         String city = "Shepherdstown";
         //"https://bikeindex.org:443/api/v3/search?page=1&per_page=10&location=Shepherdstown%2C%20WV&distance=100&stolenness=proximity"
-        url="https://bikeindex.org:443/api/v3/search?page=1&per_page=10&location="+city+"%2C%20WV&distance="+distance+"&stolenness=proximity";
+        url="https://bikeindex.org:443/api/v3/search?page=1&per_page=100&location="+city+"%2C%20WV&distance="+distance+"&stolenness=proximity";
         searchTitle = "Bikes lost within "+ distance +"miles of "+city ;
         JavaDataApp jda=new JavaDataApp(url);
     }
@@ -102,7 +102,7 @@ public class JavaDataApp
         }
     }
     public void calcURL(){
-        url="https://bikeindex.org:443/api/v3/search?page=1&per_page=10&location="+city+"%2C%20WV&distance="+distance+"&stolenness=proximity";
+        url="https://bikeindex.org:443/api/v3/search?page=1&per_page=100&location="+city+"%2C%20WV&distance="+distance+"&stolenness=proximity";
     }
     public void calcTitle(){
          frame.setTitle("Bikes lost within "+ distance +"miles of "+city) ;

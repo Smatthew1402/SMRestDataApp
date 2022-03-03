@@ -22,6 +22,7 @@ public class EventsListener extends MouseAdapter implements ActionListener{
     public void mouseClicked(MouseEvent me)    {
         Point p = me.getPoint();
         master.handleMouseClick(p);
+        System.out.println(me);
     }
     /**
      * Respond to a button click.
@@ -34,6 +35,8 @@ public class EventsListener extends MouseAdapter implements ActionListener{
             master.handleButtonPress (src);
         }else if(src instanceof JTextField){
             master.handleTextEnter(src);
+        }else if(src instanceof DataView){
+            System.out.println("dataview event");
         }
         
     }
