@@ -30,18 +30,20 @@ public class ReadImage
             URL url = new URL(URL);
             image = ImageIO.read(url);
         } catch (IOException e) {
-            e.printStackTrace();
-        }
+            //e.printStackTrace();
+        } 
         
         JFrame frame = new JFrame();
         frame.setSize(300, 300);
         try{JLabel label = new JLabel(new ImageIcon(image));
             frame.add(label);
+            frame.pack();
             frame.setVisible(true);
         }catch(NullPointerException npe){
             Panel noAlert = new Panel();
             noAlert.add(new JLabel("No Image"));
             frame.add(noAlert);
+            frame.pack();
             frame.setVisible(true);
         }
         

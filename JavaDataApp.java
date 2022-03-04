@@ -21,7 +21,7 @@ public class JavaDataApp
     BikeDataHandler bikeData;
     JFrame frame;
     String url;
-    public static void main(){
+    public static void main(String args[]){
         String url;
         int distance = 100;
         String city = "Shepherdstown";
@@ -71,6 +71,7 @@ public class JavaDataApp
         cityField.addActionListener(listener);
         distanceField.addActionListener(listener);
         colorField.addActionListener(listener);
+        
         frame.add(buttons);
         frame.add(imputs);
         frame.pack();

@@ -93,13 +93,14 @@ public class BikeDataHandler
         }
     }
     public void bikeToObject(){
-        columNames = new Object[5];
+        columNames = new Object[6];
         columNames[0]="id";
         columNames[1]="Make";
         columNames[2]="Model";
         columNames[3]="Colors";
         columNames[4]="Description";
-        dataArray = new Object[bikes.length][5];
+        columNames[5]="Image?";
+        dataArray = new Object[bikes.length][6];
         for(int i=0;i<bikes.length;i++){
             dataArray[i]=bikes[i].toArr();
         }
@@ -122,7 +123,8 @@ public class BikeDataHandler
         Bike viewbike = findBike(bikeID);
         
         try{
-            ReadImage.displayImage(viewbike.getImageURL());
+            if(viewbike.getImageURL() != "??"){
+            ReadImage.displayImage(viewbike.getImageURL());}
         }catch(NullPointerException npe){
             System.out.println("No Image");
         }

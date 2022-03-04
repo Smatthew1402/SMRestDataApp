@@ -5,7 +5,7 @@ import java.util.Date;
  * @author Jason Miller
  */
 public class Bike {
-    String description, colors, make, model, ImageUrl;
+    String description, colors, make, model, ImageUrl, hasImage;
     int id;
     long date_stolen;
     public Bike(int id, String make, String model,String Colors, String descrip, String imgurl)    {
@@ -14,6 +14,11 @@ public class Bike {
         this.model=model;
         this.description=descrip;
         this.ImageUrl=imgurl;
+        if(imgurl !="??"){
+            hasImage="Has Image";
+        }else{
+            hasImage="No Image";
+        }
         colors =Colors;
         date_stolen=-1;
     }
@@ -33,12 +38,13 @@ public class Bike {
         return showall;
     }
     public Object[] toArr(){
-        Object[] out = new Object[5];
+        Object[] out = new Object[6];
         out[0]=id;
         out[1]=make;
         out[2]=model;
-        out[4]=description;
         out[3]=colors;
+        out[4]=description;
+        out[5]=hasImage;
         return out;
     }
     public String getImageURL(){

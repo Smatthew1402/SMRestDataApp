@@ -22,7 +22,6 @@ public class EventsListener extends MouseAdapter implements ActionListener{
     public void mouseClicked(MouseEvent me)    {
         Point p = me.getPoint();
         master.handleMouseClick(p);
-        System.out.println(me);
     }
     /**
      * Respond to a button click.
