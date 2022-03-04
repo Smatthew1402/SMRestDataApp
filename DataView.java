@@ -18,7 +18,7 @@ public class DataView extends JScrollPane{
     public void setBikeData(BikeDataHandler bdh){
         if(bdh != null){
             table = new JTable (bdh.getAllData(), bdh.getColumnNames());
-        table.setAutoCreateRowSorter(true);
+            table.setAutoCreateRowSorter(true);
         }
         setViewportView(table);
     }
