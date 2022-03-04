@@ -9,7 +9,6 @@ import javax.swing.*;
 public class DataView extends JScrollPane{
     JTable table;
     BikeDataHandler bdh;
-    
     public DataView(BikeDataHandler bdh){
         this.table = new JTable();
         this.bdh =bdh;
